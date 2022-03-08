@@ -1,4 +1,4 @@
-package ca.unb.usermanagement.service;
+package ca.unb.usermanagement.service.test;
 
 import ca.unb.usermanagement.model.SampleData;
 import org.springframework.stereotype.Service;

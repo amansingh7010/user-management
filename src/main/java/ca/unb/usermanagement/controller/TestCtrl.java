@@ -1,7 +1,7 @@
 package ca.unb.usermanagement.controller;
 
 import ca.unb.usermanagement.model.SampleData;
-import ca.unb.usermanagement.service.TestService;
+import ca.unb.usermanagement.service.test.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
