@@ -15,11 +15,8 @@ import ca.unb.usermanagement.model.User;
 public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
-	
 	private Long id;
-	 
 	private String username;
-	 
 	private String email;
 	 
 	@JsonIgnore
@@ -38,11 +35,11 @@ public class UserDetailsImpl implements UserDetails {
 	
 	public static UserDetailsImpl build(User user) {
 	List<GrantedAuthority> authorities = user.getRoles().stream()
-			.map(role -> new SimpleGrantedAuthority(role.getName().name()))
+			.map(role -> new SimpleGrantedAuthority(role.name()))
 			.collect(Collectors.toList());
 	
 	return new UserDetailsImpl(
-			user.getId(), 
+			user.getUserID(), 
 	        user.getUsername(), 
 	        user.getEmail(),
 	        user.getPassword(), 
@@ -55,48 +52,43 @@ public class UserDetailsImpl implements UserDetails {
 	}
 	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 	
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 	
 	public String getPassword() {
-		return password;
-	}
-	
-	public String getUserName() {
-		return username;
+		return this.password;
 	}
 	
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
+		// TODO: Logic
 		return false;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
+		// TODO: Logic
 		return false;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
+		// TODO: Logic
 		return false;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		// TODO: Logic
 		return false;
 	}
 	
