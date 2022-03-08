@@ -1,16 +1,17 @@
 package ca.unb.usermanagement.model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserRegistry {
     protected static UserRegistry userRegistry;
-    private ArrayList<User> userList;
+    private Set<User> users;
     private AtomicInteger idProvider;
     private SuperUser superUser;
 
     private UserRegistry(){
-        userList = new ArrayList<>();
+        users = new HashSet<>();
         idProvider = new AtomicInteger(0);
     }
     
@@ -24,13 +25,13 @@ public class UserRegistry {
     }
         
     public void addUser(User toAdd){
-        userList.add(toAdd);
+        users.add(toAdd);
     }
     public void removeUser(User toRemove){
-        userList.remove(toRemove);
+        users.remove(toRemove);
     }
-    public ArrayList<User> getUserList(){
-        return userList;        
+    public Set<User> getUsers(){
+        return users;        
     }
 
     public SuperUser getSuperUser(){
