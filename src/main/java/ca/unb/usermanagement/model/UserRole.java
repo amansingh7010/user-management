@@ -14,6 +14,10 @@ public class UserRole {
 	private EUserRole name;
 	
 	public UserRole() {}
+	
+	public UserRole(EUserRole name) {
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;
