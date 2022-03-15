@@ -1,9 +1,7 @@
 package ca.unb.usermanagement.service;
 
-import ca.unb.usermanagement.model.SampleData;
-
-import java.util.List;
+import ca.unb.usermanagement.payload.response.ListResponse;
 
 public interface TestService {
-    List<SampleData> getSomeData();
+	ListResponse getSomeData();
 }
