@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import ca.unb.usermanagement.model.EUserRole;
 import ca.unb.usermanagement.model.User;
@@ -27,6 +28,7 @@ import ca.unb.usermanagement.repository.UserRoleRepository;
 import ca.unb.usermanagement.security.jwt.JwtUtils;
 import ca.unb.usermanagement.security.services.UserDetailsImpl;
 
+@Service
 public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
