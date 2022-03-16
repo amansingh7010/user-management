@@ -88,7 +88,7 @@ public class User {
 	public String rolesToString() {
 			StringBuffer sb = new StringBuffer();
 			if (roles != null) {
-					roles.forEach(userRole -> sb.append(userRole).append(","));
+					roles.forEach(userRole -> sb.append(userRole.toString()).append(", "));
 					return sb.toString();
 			}
 			return "";

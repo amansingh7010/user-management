@@ -7,14 +7,15 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.UUID;
 
-@RestController("/api/report")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/api/report")
 public class ReportCtrl {
     private final ReportService reportService;
 
@@ -23,10 +24,11 @@ public class ReportCtrl {
     }
 
     @GetMapping("/users")
-    ResponseEntity<Resource> getUsersReport(@RequestParam(defaultValue = "xlsx") String type) throws IOException {
+    //@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    ResponseEntity<Resource> getUsersReport(@RequestParam(defaultValue = "XLSX") String type) throws IOException {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + UUID.randomUUID() + "." + type)
-                .contentType(type.equals("xlsx") ? MediaType.parseMediaType("application/vnd.ms-excel") : MediaType.APPLICATION_PDF)
+                .contentType(type.equals("XLSX") ? MediaType.parseMediaType("application/vnd.ms-excel") : MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(reportService.getReportByType(ReportType.valueOf(type))));
     }
 
