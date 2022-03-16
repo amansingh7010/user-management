@@ -1,4 +1,4 @@
-package ca.unb.usermanagement.service;
+package ca.unb.usermanagement.service.auth;
 
 import java.util.HashSet;
 import java.util.List;

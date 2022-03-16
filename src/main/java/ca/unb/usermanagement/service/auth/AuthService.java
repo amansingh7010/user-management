@@ -1,4 +1,4 @@
-package ca.unb.usermanagement.service;
+package ca.unb.usermanagement.service.auth;
 
 import org.springframework.http.ResponseEntity;
 

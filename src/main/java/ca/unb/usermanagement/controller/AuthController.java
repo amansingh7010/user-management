@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
-import ca.unb.usermanagement.service.AuthService;
+import ca.unb.usermanagement.service.auth.AuthService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
