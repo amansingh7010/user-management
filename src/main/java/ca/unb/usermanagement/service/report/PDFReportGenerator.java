@@ -26,11 +26,11 @@ public class PDFReportGenerator implements ReportGenerator {
 
         try {
 
-            PdfPTable table = new PdfPTable(3);
-            table.setWidthPercentage(60);
-            table.setWidths(new int[]{1, 3, 3});
+            PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(100);
 
             Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+            headFont.setColor(BaseColor.RED);
 
             PdfPCell hcell;
             hcell = new PdfPCell(new Phrase("UserName", headFont));
@@ -38,14 +38,6 @@ public class PDFReportGenerator implements ReportGenerator {
             table.addCell(hcell);
 
             hcell = new PdfPCell(new Phrase("Email", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("UserID", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("Roles", headFont));
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
 
@@ -64,17 +56,6 @@ public class PDFReportGenerator implements ReportGenerator {
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
-                cell = new PdfPCell(new Phrase(user.getId()));
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                cell.setPaddingRight(5);
-                table.addCell(cell);
-
-                cell = new PdfPCell(new Phrase(user.rolesToString()));
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                cell.setPaddingRight(5);
-                table.addCell(cell);
             }
 
             PdfWriter.getInstance(document, out);

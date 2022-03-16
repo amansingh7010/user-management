@@ -1,5 +1,6 @@
 package ca.unb.usermanagement.service.report;
 
+import ca.unb.usermanagement.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -8,7 +9,10 @@ import java.io.InputStream;
 @Service
 public class ReportServiceImpl implements ReportService {
 
-    public ReportServiceImpl() {
+    private final UserRepository userRepository;
+
+    public ReportServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -22,6 +26,6 @@ public class ReportServiceImpl implements ReportService {
             return null;
         }
 
-        return reportGenerator.generateReport(null);
+        return reportGenerator.generateReport(userRepository.findAll());
     }
 }
