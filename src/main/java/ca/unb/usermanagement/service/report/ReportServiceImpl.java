@@ -2,7 +2,8 @@ package ca.unb.usermanagement.service.report;
 
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -11,7 +12,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public File getReportByType(ReportType type) {
+    public InputStream getReportByType(ReportType type) throws IOException {
         ReportGenerator reportGenerator;
         if (type == ReportType.PDF) {
             reportGenerator = new PDFReportGenerator();
