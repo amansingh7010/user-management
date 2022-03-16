@@ -64,7 +64,7 @@ public class PDFReportGenerator implements ReportGenerator {
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
-                cell = new PdfPCell(new Phrase(user.getUserID()));
+                cell = new PdfPCell(new Phrase(user.getId()));
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
                 cell.setPaddingRight(5);
