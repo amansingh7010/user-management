@@ -63,41 +63,31 @@ public class UserDetailsImpl implements UserDetails {
 	}
 	
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 	
-	public String getUserName() {
-		return username;
-	}
-	
-	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	@Override
