@@ -22,7 +22,7 @@ import ca.unb.usermanagement.model.UserRole;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
 import ca.unb.usermanagement.payload.response.MessageResponse;
-import ca.unb.usermanagement.payload.response.UserInfoResponse;
+import ca.unb.usermanagement.payload.response.Response;
 import ca.unb.usermanagement.repository.UserRepository;
 import ca.unb.usermanagement.repository.UserRoleRepository;
 import ca.unb.usermanagement.security.jwt.JwtUtils;
@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
 			      .map(item -> item.getAuthority())
 			      .collect(Collectors.toList());
 			  return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-			      .body(new UserInfoResponse(userDetails.getId(),
+			      .body(new Response().createUserInfoResponse(userDetails.getId(),
 			                                 userDetails.getUsername(),
 			                                 userDetails.getEmail(),
 			                                 roles));
@@ -67,7 +67,7 @@ public class AuthServiceImpl implements AuthService {
 	public ResponseEntity<?> logout() {
 		ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
 		  return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
-		      .body(new MessageResponse("Logout success!"));
+		      .body(new Response().createMessageResponse("Logout success!"));
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class AuthServiceImpl implements AuthService {
 		  }
 		  user.setRoles(roles);
 		  userRepository.save(user);
-		  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		  return ResponseEntity.ok(new Response().createMessageResponse("User registered successfully!"));
 	}
 
 }
