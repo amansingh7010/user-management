@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Users Reports</title>
+    <link
+            rel="stylesheet"
+            href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>Reports Page</h1>
+
+    <button type="button" id="xlsx_btn" class="btn btn-lg btn-block">XLSX report</button>
+    <button type="button" id="pdf_btn" class="btn btn-lg btn-block">PDF report</button>
+
+    <button type="button" id="signout_btn" class="btn btn-lg btn-block">SignOut</button>
+</div>
+
+<script type="text/javascript">
+
+    $("#xlsx_btn").click(function () {
+        window.location.href = "http://localhost:8080/api/report/users?type=XLSX";
+    });
+
+    $("#pdf_btn").click(function () {
+        window.location.href = "http://localhost:8080/api/report/users?type=PDF";
+    });
+
+    $("#signout_btn").click(function () {
+        logout();
+    });
+
+    function logout() {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/auth/signout",
+            dataType: "json", // expected format for response
+            contentType: "application/json",
+            async: false,
+            success: function (data, textStatus, jQxhr) {
+                console.log(textStatus);
+                window.location.href = "http://localhost:8080/signin";
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(textStatus);
+                alert(errorThrown);
+            }
+        })
+    };
+
+</script>
+
+</body>
+
+</html>

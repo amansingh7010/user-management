@@ -24,7 +24,7 @@ public class ReportCtrl {
     }
 
     @GetMapping("/users")
-    //@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     ResponseEntity<Resource> getUsersReport(@RequestParam(defaultValue = "XLSX") String type) throws IOException {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + UUID.randomUUID() + "." + type)

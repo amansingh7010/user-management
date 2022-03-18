@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login as User</title>
+    <link
+            rel="stylesheet"
+            href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>SignIn as User</h1>
+
+    <form action="#" id="loginForm">
+        <div id="name-group" class="form-group">
+            <label for="username">UserName</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="name"
+                    placeholder="Full Name"
+            />
+        </div>
+
+        <div id="superhero-group" class="form-group">
+            <label for="password">password</label>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder=""
+            />
+        </div>
+
+        <button type="button" id="login_btn" class="btn btn-lg btn-block">SignIn</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $("#login_btn").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        authenticate(username, password);
+    });
+
+    function authenticate(username, password) {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/auth/signin",
+            dataType: "json", // expected format for response
+            contentType: "application/json",
+            async: false,
+            data: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+            success: function (result, textStatus, jqXHR) {
+                console.log(textStatus);
+                console.log(result);
+                window.location.href = "../reports";
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(textStatus);
+                alert('try again!');
+            }
+        })
+    };
+</script>
+
+</body>
+
+</html>

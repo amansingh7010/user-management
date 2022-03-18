@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register as User</title>
+    <link
+            rel="stylesheet"
+            href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>SignUp Form as User</h1>
+
+    <form action="#" id="loginForm">
+        <div id="name-group" class="form-group">
+            <label for="username">Name</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="name"
+                    placeholder="Full Name"
+            />
+        </div>
+
+        <div id="email-group" class="form-group">
+            <label for="email">Email</label>
+            <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="email@example.com"
+            />
+        </div>
+
+        <div id="superhero-group" class="form-group">
+            <label for="password">password (at least 6 characters)</label>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    minlength="6"
+                    placeholder=""
+            />
+        </div>
+
+        <button type="button" id="login_btn" class="btn btn-lg btn-block">SignUp</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    sessionStorage.clear();
+    $("#login_btn").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var email = $("#email").val();
+        authenticate(username, password, email);
+    });
+
+    function authenticate(username, password, email) {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/auth/signup",
+            dataType: "json", // expected format for response
+            contentType: "application/json",
+            async: false,
+            data: JSON.stringify({
+                username: username,
+                password: password,
+                email: email,
+                role: ["user"]
+            }),
+            success: function (data, textStatus, jQxhr) {
+                console.log(textStatus);
+                window.location.href = "../signin";
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(jqXhr, textStatus, errorThrown);
+                alert(textStatus + ':' + jqXhr.responseText);
+            }
+        })
+    };
+</script>
+
+</body>
+
+</html>
