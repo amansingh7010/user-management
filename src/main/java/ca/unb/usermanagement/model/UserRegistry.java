@@ -10,12 +10,12 @@ public class UserRegistry {
     private AtomicInteger idProvider;
     private SuperUser superUser;
 
-    private UserRegistry(){
+    private UserRegistry() {
         users = new HashSet<>();
         idProvider = new AtomicInteger(0);
     }
-    
-    public static UserRegistry getInstance(){
+
+    public static UserRegistry getInstance() {
         if (userRegistry == null) {
             userRegistry = new UserRegistry();
             userRegistry.superUser = SuperUser.getInstance();
@@ -23,21 +23,23 @@ public class UserRegistry {
         }
         return userRegistry;
     }
-        
-    public void addUser(User toAdd){
+
+    public void addUser(User toAdd) {
         users.add(toAdd);
     }
-    public void removeUser(User toRemove){
+
+    public void removeUser(User toRemove) {
         users.remove(toRemove);
     }
-    public Set<User> getUsers(){
-        return users;        
+
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public SuperUser getSuperUser(){
+    public SuperUser getSuperUser() {
         return superUser;
     }
- 
+
     public int setUserID() {
         return idProvider.getAndIncrement();
     }

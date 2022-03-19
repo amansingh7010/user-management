@@ -3,7 +3,6 @@ package ca.unb.usermanagement.security;
 import ca.unb.usermanagement.security.jwt.AuthEntryPointJwt;
 import ca.unb.usermanagement.security.jwt.AuthTokenFilter;
 import ca.unb.usermanagement.security.services.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,11 +25,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.h2.console.path}")
     private String h2ConsolePath;
 
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    private final AuthEntryPointJwt unauthorizedHandler;
+
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, AuthEntryPointJwt unauthorizedHandler) {
+        this.userDetailsService = userDetailsService;
+        this.unauthorizedHandler = unauthorizedHandler;
+    }
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {

@@ -16,10 +16,10 @@ import java.util.UUID;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/report")
-public class ReportCtrl {
+public class ReportController {
     private final ReportService reportService;
 
-    public ReportCtrl(ReportService reportService) {
+    public ReportController(ReportService reportService) {
         this.reportService = reportService;
     }
 

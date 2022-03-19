@@ -1,15 +1,13 @@
 package ca.unb.usermanagement.service.test;
 
-import java.util.Arrays;
-
-import org.springframework.stereotype.Service;
-
 import ca.unb.usermanagement.model.SampleData;
 import ca.unb.usermanagement.payload.response.ListResponse;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class TestServiceImpl implements TestService {
-
     @Override
     public ListResponse getSomeData() {
         return new ListResponse(Arrays.asList(
