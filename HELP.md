@@ -1,9 +1,16 @@
-# Read Me First
+# Run the Program
+to run the program follow one of these:
+1. to run the source code in unix based systems:
+- `./gradlew bootRun`
 
-Please run the program and go to this url in your browser:
+2. to run the source code from ide, import as gradle project and then execute **bootRun**
 
+3. to run the jar package:
+- `java -jar user-management-x.y.z.jar`
+
+
+#After running go to these urls in browser:
 ## signup:
-
 
 `http://localhost:8080/signup`
 
