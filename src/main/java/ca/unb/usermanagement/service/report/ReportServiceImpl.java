@@ -1,6 +1,6 @@
 package ca.unb.usermanagement.service.report;
 
-import ca.unb.usermanagement.repository.UserRepository;
+import ca.unb.usermanagement.model.UserRegistry;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -8,12 +8,6 @@ import java.io.InputStream;
 
 @Service
 public class ReportServiceImpl implements ReportService {
-
-    private final UserRepository userRepository;
-
-    public ReportServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public InputStream getReportByType(ReportType type) throws IOException {
@@ -26,6 +20,6 @@ public class ReportServiceImpl implements ReportService {
             return null;
         }
 
-        return reportGenerator.generateReport(userRepository.findAll());
+        return reportGenerator.generateReport(UserRegistry.getInstance().getUsersAsList());
     }
 }

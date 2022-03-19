@@ -19,12 +19,11 @@ import org.springframework.stereotype.Service;
 import ca.unb.usermanagement.model.EUserRole;
 import ca.unb.usermanagement.model.User;
 import ca.unb.usermanagement.model.UserRole;
+import ca.unb.usermanagement.model.UserRegistry;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
 import ca.unb.usermanagement.payload.response.MessageResponse;
 import ca.unb.usermanagement.payload.response.Response;
-import ca.unb.usermanagement.repository.UserRepository;
-import ca.unb.usermanagement.repository.UserRoleRepository;
 import ca.unb.usermanagement.security.jwt.JwtUtils;
 import ca.unb.usermanagement.security.services.UserDetailsImpl;
 
@@ -33,12 +32,6 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
-	@Autowired
-	UserRepository userRepository;
-	
-	@Autowired
-	UserRoleRepository userRoleRepository;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -72,10 +65,12 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public ResponseEntity<?> registerUser(SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+		UserRegistry userRegistry = UserRegistry.getInstance();
+
+		if (userRegistry.existsByUsername(signUpRequest.getUsername())) {
 		    return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		  }
-		  if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+		  if (userRegistry.existsByEmail(signUpRequest.getEmail())) {
 		    return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		  }
 		  // Create new user's account
@@ -85,31 +80,27 @@ public class AuthServiceImpl implements AuthService {
 		  Set<String> strRoles = signUpRequest.getRole();
 		  Set<UserRole> roles = new HashSet<>();
 		  if (strRoles == null) {
-			  UserRole userRole = userRoleRepository.findByName(EUserRole.ROLE_USER)
-		        .orElseThrow(() -> new RuntimeException("Error: UserRole not found."));
+			  UserRole userRole = new UserRole(EUserRole.ROLE_USER);
 		    roles.add(userRole);
 		  } else {
 		    strRoles.forEach(role -> {
 		      switch (role) {
 		      case "admin":
-		    	UserRole adminRole = userRoleRepository.findByName(EUserRole.ROLE_ADMIN)
-		            .orElseThrow(() -> new RuntimeException("Error: UserRole not found."));
+		    	UserRole adminRole = new UserRole(EUserRole.ROLE_ADMIN);
 		        roles.add(adminRole);
 		        break;
 		      case "mod":
-		    	  UserRole modRole = userRoleRepository.findByName(EUserRole.ROLE_MODERATOR)
-		            .orElseThrow(() -> new RuntimeException("Error: UserRole not found."));
+		    	  UserRole modRole = new UserRole(EUserRole.ROLE_MODERATOR);
 		        roles.add(modRole);
 		        break;
 		      default:
-		    	  UserRole userRole = userRoleRepository.findByName(EUserRole.ROLE_USER)
-		            .orElseThrow(() -> new RuntimeException("Error: UserRole not found."));
+		    	  UserRole userRole = new UserRole(EUserRole.ROLE_USER);
 		        roles.add(userRole);
 		      }
 		    });
 		  }
 		  user.setRoles(roles);
-		  userRepository.save(user);
+		  userRegistry.addUser(user);
 		  return ResponseEntity.ok(new Response().createMessageResponse("User registered successfully!"));
 	}
 
