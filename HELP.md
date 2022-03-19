@@ -1,15 +1,16 @@
 # Read Me First
 
-please run the program and go to this url in your browser:
+Please run the program and go to this url in your browser:
 
-signup:
+## signup:
+
 
 `http://localhost:8080/signup`
 
-signin:
+## signin:
 
 `http://localhost:8080/signin`
 
-reports:
+## reports:
 
 `http://localhost:8080/reports`
