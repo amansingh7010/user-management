@@ -259,24 +259,14 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@test.com\",\r\n    \"password\": \"password\",\r\n    \"role\": [\"user\"]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{url}}/api/user/delete",
+							"raw": "{{url}}/api/user/",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"user",
-								"delete"
+								"user"
 							]
 						}
 					},

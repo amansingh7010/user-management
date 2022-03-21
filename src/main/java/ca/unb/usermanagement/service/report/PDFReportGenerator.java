@@ -41,6 +41,10 @@ public class PDFReportGenerator implements ReportGenerator {
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
 
+            hcell = new PdfPCell(new Phrase("Role", headFont));
+            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(hcell);
+
             for (User user : users) {
 
                 PdfPCell cell;
@@ -51,6 +55,12 @@ public class PDFReportGenerator implements ReportGenerator {
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(user.getEmail()));
+                cell.setPaddingLeft(5);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(cell);
+
+                cell = new PdfPCell(new Phrase(user.getRoles().toString()));
                 cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);

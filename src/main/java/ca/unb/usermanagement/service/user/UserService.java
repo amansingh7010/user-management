@@ -1,10 +1,12 @@
 package ca.unb.usermanagement.service.user;
 
+import ca.unb.usermanagement.model.User;
 import ca.unb.usermanagement.payload.request.DeleteRequest;
-import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public interface UserService {
-    ResponseEntity<?> deleteUser(DeleteRequest deleteRequest);
+    void deleteUser(DeleteRequest deleteRequest);
 
-    ResponseEntity<?> getUsers();
+    List<User> getUsers();
 }

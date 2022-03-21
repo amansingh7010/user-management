@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 public class XLSXReportGenerator implements ReportGenerator {
-    private static final String[] columns = {"UserName", "Email"};
+    private static final String[] columns = {"UserName", "Email", "Roles"};
 
     @Override
     public InputStream generateReport(List<User> users) throws IOException {
@@ -53,6 +53,9 @@ public class XLSXReportGenerator implements ReportGenerator {
 
             row.createCell(1)
                     .setCellValue(user.getEmail());
+            
+            row.createCell(2)
+                    .setCellValue(user.getRoles().toString());
         }
 
         // Resize all columns to fit the content size
