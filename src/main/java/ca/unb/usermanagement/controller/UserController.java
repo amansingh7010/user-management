@@ -20,4 +20,9 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteRequest deleteRequest) {
         return userService.deleteUser(deleteRequest);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getUsers() {
+        return userService.getUsers();
+    }
 }

@@ -5,7 +5,6 @@ import ca.unb.usermanagement.model.User;
 import ca.unb.usermanagement.model.UserRole;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
-import ca.unb.usermanagement.payload.request.DeleteRequest;
 import ca.unb.usermanagement.payload.response.MessageResponse;
 import ca.unb.usermanagement.payload.response.Response;
 import ca.unb.usermanagement.repository.UserRepository;

@@ -5,4 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface UserService {
     ResponseEntity<?> deleteUser(DeleteRequest deleteRequest);
+
+    ResponseEntity<?> getUsers();
 }

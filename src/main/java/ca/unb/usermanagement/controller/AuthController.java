@@ -1,6 +1,5 @@
 package ca.unb.usermanagement.controller;
 
-import ca.unb.usermanagement.payload.request.DeleteRequest;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
 import ca.unb.usermanagement.service.auth.AuthService;
