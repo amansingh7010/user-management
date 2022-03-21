@@ -1,4 +1,5 @@
 # Software Developed
+A user management system to manage and store a list of users in a system. We have also developed a report generator that exports the list of users into different file formats such as pdf and xlsx.
 
 ## Contributions 
 
@@ -16,7 +17,7 @@ Our aim was to make the code reusable by strategically applying design patterns.
 Our system implements a variety of patterns to assist with making the code more extensible. 
 
 ## Composite Pattern 
-The [User](/src/main/java/ca/unb/usermanagement/model/User.java) class implements the Composite Pattern because it was the most effective way to create the role-based access heirarchy. 
+The [User](/src/main/java/ca/unb/usermanagement/model/User.java) class implements the Composite Pattern because it was the most effective way to create the role-based access hierarchy. 
 
 The [User Roles](/src/main/java/ca/unb/usermanagement/model/EUserRole.java) in order from least to most access: 
 * ROLE_USER
@@ -56,7 +57,47 @@ Similar to the benefits for the Report generation, the factory methods makes it 
 
 <img src="User-Management-UML.png" />
 
-# Using Our Code
-
 ## Where to start
 The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
+
+# API Specification
+
+## Auth API
+
+* `POST /api/auth/login`
+<br> Description: Authenticates a user
+<br> Request body ```{ "username": "admin",
+    "password": "password"}```
+<br> Response example: ```{}```
+
+* `POST /api/auth/signup`
+<br> Description: Creates a new user with specified roles
+<br> Request body ```{ "username": "admin",
+    "email": "admin@test.com",
+    "password": "password",
+    "role": ["admin", "mod", "user"]}```
+<br> Response example: ```{}```
+
+* `POST /api/auth/signout`
+<br> Description: Logs out a user
+<br> Response example: ```{}```
+
+## Test API
+
+* `GET /api/test/all`
+<br> Description: Tests the content available to all users
+<br> Response example: ```{}```
+
+* `GET /api/test/user`
+<br> Description: Tests the content available to users with 'user' role
+<br> Response example: ```{}```
+
+* `GET /api/test/mod`
+<br> Description: Tests the content available to users with 'mod' role
+<br> Response example: ```{}```
+
+* `GET /api/test/admin`
+<br> Description: Tests the content available to users with 'admin' role
+<br> Response example: ```{}```
+
+
