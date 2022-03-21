@@ -5,6 +5,7 @@ import ca.unb.usermanagement.model.User;
 import ca.unb.usermanagement.model.UserRole;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
+import ca.unb.usermanagement.payload.request.DeleteRequest;
 import ca.unb.usermanagement.payload.response.MessageResponse;
 import ca.unb.usermanagement.payload.response.Response;
 import ca.unb.usermanagement.repository.UserRepository;
@@ -111,4 +112,20 @@ public class AuthServiceImpl implements AuthService {
         return ResponseEntity.ok(new Response().createMessageResponse("User registered successfully!"));
     }
 
+
+    @Override
+    public ResponseEntity<?> deleteUser(DeleteRequest deleteRequest) {
+
+        User user = userRepository.findByUsername(deleteRequest.getUsername())
+            .orElse(null);
+
+        if ( user == null) {
+            return ResponseEntity.notFound().build();
+            
+        }
+        else{
+            userRepository.deleteById(user.getId());
+            return ResponseEntity.ok(new Response().createMessageResponse("User deleted successfully!"));
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package ca.unb.usermanagement.controller;
 
+import ca.unb.usermanagement.payload.request.DeleteRequest;
 import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
 import ca.unb.usermanagement.service.auth.AuthService;
@@ -30,5 +31,10 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         return authService.registerUser(signUpRequest);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteRequest deleteRequest) {
+        return authService.deleteUser(deleteRequest);
     }
 }
