@@ -32,9 +32,4 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         return authService.registerUser(signUpRequest);
     }
-
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteRequest deleteRequest) {
-        return authService.deleteUser(deleteRequest);
-    }
 }

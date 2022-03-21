@@ -111,21 +111,4 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
         return ResponseEntity.ok(new Response().createMessageResponse("User registered successfully!"));
     }
-
-
-    @Override
-    public ResponseEntity<?> deleteUser(DeleteRequest deleteRequest) {
-
-        User user = userRepository.findByUsername(deleteRequest.getUsername())
-            .orElse(null);
-
-        if ( user == null) {
-            return ResponseEntity.notFound().build();
-            
-        }
-        else{
-            userRepository.deleteById(user.getId());
-            return ResponseEntity.ok(new Response().createMessageResponse("User deleted successfully!"));
-        }
-    }
 }

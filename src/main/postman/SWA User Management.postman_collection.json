@@ -220,20 +220,34 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "User API",
+			"item":[
 				{
 					"name": "Delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"username\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{url}}/api/auth/delete",
+							"raw": "{{url}}/api/user/delete",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"auth",
+								"user",
 								"delete"
 							]
 						}
