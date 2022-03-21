@@ -220,20 +220,62 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "User API",
+			"item":[
 				{
 					"name": "Delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"username\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{url}}/api/auth/delete",
+							"raw": "{{url}}/api/user/delete",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"auth",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@test.com\",\r\n    \"password\": \"password\",\r\n    \"role\": [\"user\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
 								"delete"
 							]
 						}
