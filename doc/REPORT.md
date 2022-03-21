@@ -101,3 +101,10 @@ The [Help](../HELP.md) file is the best place to begin. It contains the localhos
 <br> Response example: ```{}```
 
 
+## Report API
+
+* `GET /api/report/users?type=XLSX`
+  <br> Description: returns report of the users (usernames and emails) in the format of Excel file (.xlsx)
+
+* `GET /api/report/users?type=PDF`
+  <br> Description: returns report of the users (usernames and emails)  in the format of PDF file (.pdf)
