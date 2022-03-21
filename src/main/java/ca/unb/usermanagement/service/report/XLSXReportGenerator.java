@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class XLSXReportGenerator implements ReportGenerator {
@@ -55,7 +56,7 @@ public class XLSXReportGenerator implements ReportGenerator {
                     .setCellValue(user.getEmail());
             
             row.createCell(2)
-                    .setCellValue(user.getRoles().toString());
+                    .setCellValue(user.getRoles().stream().map((r) -> r.getName().toString()).collect(Collectors.joining(",")));
         }
 
         // Resize all columns to fit the content size

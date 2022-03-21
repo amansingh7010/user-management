@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PDFReportGenerator implements ReportGenerator {
@@ -26,7 +27,7 @@ public class PDFReportGenerator implements ReportGenerator {
 
         try {
 
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(3);
             table.setWidthPercentage(100);
 
             Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
@@ -60,7 +61,7 @@ public class PDFReportGenerator implements ReportGenerator {
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
-                cell = new PdfPCell(new Phrase(user.getRoles().toString()));
+                cell = new PdfPCell(new Phrase(user.getRoles().stream().map((r) -> r.getName().toString()).collect(Collectors.joining(","))));
                 cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
