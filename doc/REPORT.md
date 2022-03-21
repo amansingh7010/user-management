@@ -1,9 +1,13 @@
 # Software Developed
 
 ## Contributions 
-Amanjot Singh   %  
-Daniel Khadivi  %  
-Kayla Manahan   %  
+
+| Name           | %  |
+|----------------|:--:|
+| Amanjot Singh  | 33 |
+| Daniel Khadivi | 33 |
+| Kayla Manahan  | 33 |
+ 
 
 # Objectives
 Our aim was to make the code reusable by strategically applying design patterns. 
@@ -23,14 +27,16 @@ The [User Roles](/src/main/java/ca/unb/usermanagement/model/EUserRole.java) in o
 ## Singleton Pattern 
 The [SuperUser](/src/main/java/ca/unb/usermanagement/model/SuperUser.java) and [UserRegistry](/src/main/java/ca/unb/usermanagement/model/UserRegistry.java) classes implement the singleton pattern because we want to ensure only one instance of each exist. The SuperUser should have all access rights to the system, but we needed to ensure only one SuperUser existed per UserRegistry. 
 
-The benefit of implementing the Singleton pattern in these classes is having strciter control over the global access to the Object instance. 
+The benefit of implementing the Singleton pattern in these classes is having stricter control over the global access to the Object instance. 
 
 ## Strategy Pattern 
 The [ReportGenerator](/src/main/java/ca/unb/usermanagement/service/report/ReportGenerator.java) class implements the Strategy Pattern which allows for flexibility in the [Type of Report](/src/main/java/ca/unb/usermanagement/service/report/ReportType.java) that is generated. 
 
 Currently the system supports the following types of reports:
-* PDF
-* XLSX
+* [PDF](/src/main/java/ca/unb/usermanagement/service/report/PDFReportGenerator.java)
+* [XLSX](/src/main/java/ca/unb/usermanagement/service/report/XLSXReportGenerator.java)
+
+Having the Report generation structured in this way allows for more formats to be added with ease.
 
 ## Factory Method Pattern
 The [Response](/src/main/java/ca/unb/usermanagement/payload/response/Response.java) class implements the Factory method because it can not anticipate which Response Type it will need to create. 
@@ -38,6 +44,13 @@ The [Response](/src/main/java/ca/unb/usermanagement/payload/response/Response.ja
 By using the factory method pattern:  
 * The subclasses decide which class to instantiate.
 * Localized knowledge of delegate helper subclass. 
+
+Current response types:
+* [List](/src/main/java/ca/unb/usermanagement/payload/response/ListResponse.java)
+* [Message](/src/main/java/ca/unb/usermanagement/payload/response/MessageResponse.java)
+* [UserInfo](/src/main/java/ca/unb/usermanagement/payload/response/UserInfoResponse.java)
+
+Similar to the benefits for the Report generation, the factory methods makes it very simple to add more response types depending on the needs of the system in the future. 
 
 # UML Diagram 
 
@@ -47,5 +60,3 @@ By using the factory method pattern:
 
 ## Where to start
 The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
-
-## Basic Scenerio

@@ -220,6 +220,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"delete"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
