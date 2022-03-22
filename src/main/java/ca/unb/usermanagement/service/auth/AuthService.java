@@ -1,13 +1,14 @@
 package ca.unb.usermanagement.service.auth;
 
-import ca.unb.usermanagement.payload.request.LoginRequest;
 import ca.unb.usermanagement.payload.request.SignupRequest;
-import org.springframework.http.ResponseEntity;
+import ca.unb.usermanagement.payload.response.MessageResponse;
+import ca.unb.usermanagement.payload.response.UserInfoResponse;
+import ca.unb.usermanagement.security.services.UserDetailsImpl;
 
 public interface AuthService {
-    ResponseEntity<?> authenticate(LoginRequest loginRequest);
+    UserInfoResponse authenticate(UserDetailsImpl userDetails);
 
-    ResponseEntity<?> logout();
+    MessageResponse logout();
 
-    ResponseEntity<?> registerUser(SignupRequest signupRequest);
+    MessageResponse saveUser(SignupRequest signupRequest);
 }
