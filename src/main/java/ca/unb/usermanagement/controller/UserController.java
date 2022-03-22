@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -25,29 +25,29 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteUser(@Valid @RequestBody DeleteRequest deleteRequest) {
-        
+
         try {
             userService.deleteUser(deleteRequest);
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
-        
+
         return ResponseEntity.ok(new Response().createMessageResponse("User deleted successfully!"));
     }
 
     @GetMapping("")
     public ResponseEntity<?> getUsers() {
-        
+
         List<User> users = userService.getUsers();
 
         List<UserInfoResponse> responses = new ArrayList<UserInfoResponse>();
 
         for (User user : users) {
             responses.add(
-                new UserInfoResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles().stream().map((r) -> r.getName().toString()).toList())
+                    new UserInfoResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles().stream().map((r) -> r.getName().toString()).collect(Collectors.toList()))
             );
         }
-        
-        return ResponseEntity.ok().body(new Response().createListResponse(responses)); 
+
+        return ResponseEntity.ok().body(new Response().createListResponse(responses));
     }
 }
