@@ -68,7 +68,16 @@ The [Help](../HELP.md) file is the best place to begin. It contains the localhos
 <br> Description: Authenticates a user
 <br> Request body ```{ "username": "admin",
     "password": "password"}```
-<br> Response example: ```{}```
+<br> Response example: ```{{
+    "id": 1,
+    "username": "admin",
+    "email": "admin@test.com",
+    "roles": [
+        "ROLE_MODERATOR",
+        "ROLE_ADMIN",
+        "ROLE_USER"
+    ]
+}}```
 
 * `POST /api/auth/signup`
 <br> Description: Creates a new user with specified roles
@@ -76,29 +85,29 @@ The [Help](../HELP.md) file is the best place to begin. It contains the localhos
     "email": "admin@test.com",
     "password": "password",
     "role": ["admin", "mod", "user"]}```
-<br> Response example: ```{}```
+<br> Response example: ```{"message": "User registered successfully!"}```
 
 * `POST /api/auth/signout`
 <br> Description: Logs out a user
-<br> Response example: ```{}```
+<br> Response example: ```{"message": "Logout success!"}```
 
 ## Test API
 
 * `GET /api/test/all`
 <br> Description: Tests the content available to all users
-<br> Response example: ```{}```
+<br> Response example: ```Public Content.```
 
 * `GET /api/test/user`
 <br> Description: Tests the content available to users with 'user' role
-<br> Response example: ```{}```
+<br> Response example: ```User Content.```
 
 * `GET /api/test/mod`
 <br> Description: Tests the content available to users with 'mod' role
-<br> Response example: ```{}```
+<br> Response example: ```Moderator Board.```
 
 * `GET /api/test/admin`
 <br> Description: Tests the content available to users with 'admin' role
-<br> Response example: ```{}```
+<br> Response example: ```Admin Board.```
 
 
 ## Report API
