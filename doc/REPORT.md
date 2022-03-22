@@ -8,7 +8,40 @@ A user management system to manage and store a list of users in a system. We hav
 | Amanjot Singh  | 33 |
 | Daniel Khadivi | 33 |
 | Kayla Manahan  | 33 |
- 
+
+## Acknowledgements
+Please view our citations [here](..\data\README.md).
+
+## Service Architecture
+Our User Management system implements a number of nano services who's APIs are described below in the [API Specification](#api-specification) section.
+
+### Controllers
+Currently, the system implements the following controllers: 
+* [Auth](/src/main/java/ca/unb/usermanagement/controller/AuthController.java)
+* [Report](/src/main/java/ca/unb/usermanagement/controller/ReportController.java)
+* [Test](/src/main/java/ca/unb/usermanagement/controller/TestController.java)
+* [User](/src/main/java/ca/unb/usermanagement/controller/UserController.java)
+* [Web](/src/main/java/ca/unb/usermanagement/controller/WebController.java)
+
+### Models
+Our system is designed to hold handle users, like the name suggests. Each [User](/src/main/java/ca/unb/usermanagement/model/User.java) has the following details: 
+* ID (automatically generated when the User is created)
+* username (could be user's full name, or something random)
+* email
+* list of assigned roles (one will be automatically assigned when User is created. Decided based on which signup page is used)
+
+### Payload
+The Payload describes a variety of Requests and Responses our system will use. 
+
+#### Current Requests: 
+* [Delete](src\main\java\ca\unb\usermanagement\payload\request\DeleteRequest.java)
+* [Login](src\main\java\ca\unb\usermanagement\payload\request\LoginRequest.java)
+* [Signup](src\main\java\ca\unb\usermanagement\payload\request\SignupRequest.java)
+
+The Responses of our system will be described below in the [Factory Method Pattern](#factory-method-pattern) section.
+
+### Repositories 
+The system currently supports the [User](src\main\java\ca\unb\usermanagement\repository\UserRepository.java) and [UserRole](src\main\java\ca\unb\usermanagement\repository\UserRoleRepository.java) repositories. These repositories allow us to manage a large number of users.
 
 # Objectives
 Our aim was to make the code reusable by strategically applying design patterns. 
@@ -57,12 +90,11 @@ Similar to the benefits for the Report generation, the factory methods makes it 
 
 <img src="User-Management-UML.png" />
 
-## Where to start
-The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
-
 # API Specification
 
 ## Auth API
+
+[Auth API](src\main\java\ca\unb\usermanagement\service\auth\AuthService.java)
 
 * `POST /api/auth/login`
 <br> Description: Authenticates a user
@@ -109,11 +141,25 @@ The [Help](../HELP.md) file is the best place to begin. It contains the localhos
 <br> Description: Tests the content available to users with 'admin' role
 <br> Response example: ```Admin Board.```
 
-
 ## Report API
 
+[Report API](src\main\java\ca\unb\usermanagement\service\report\ReportService.java)
+
 * `GET /api/report/users?type=XLSX`
-  <br> Description: returns report of the users (usernames and emails) in the format of Excel file (.xlsx)
+  <br> Description: returns report of the users (usernames, emails, roles) in the format of Excel file (.xlsx)
 
 * `GET /api/report/users?type=PDF`
-  <br> Description: returns report of the users (usernames and emails)  in the format of PDF file (.pdf)
+  <br> Description: returns report of the users (usernames, emails, roles) in the format of PDF file (.pdf)
+
+## User API
+
+[User API](src\main\java\ca\unb\usermanagement\service\user\UserService.java)
+
+* `DELETE /api/user/delete`
+  <br> Description: deletes the selected user if it exists
+
+* `GET /api/user/`
+  <br> Description: returns list of all users (usernames, emails, roles)
+
+# Where to start
+The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
