@@ -57,12 +57,11 @@ Similar to the benefits for the Report generation, the factory methods makes it 
 
 <img src="User-Management-UML.png" />
 
-## Where to start
-The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
-
 # API Specification
 
 ## Auth API
+
+[Auth API](src\main\java\ca\unb\usermanagement\service\auth\AuthService.java)
 
 * `POST /api/auth/login`
 <br> Description: Authenticates a user
@@ -109,11 +108,25 @@ The [Help](../HELP.md) file is the best place to begin. It contains the localhos
 <br> Description: Tests the content available to users with 'admin' role
 <br> Response example: ```Admin Board.```
 
-
 ## Report API
 
+[Report API](src\main\java\ca\unb\usermanagement\service\report\ReportService.java)
+
 * `GET /api/report/users?type=XLSX`
-  <br> Description: returns report of the users (usernames and emails) in the format of Excel file (.xlsx)
+  <br> Description: returns report of the users (usernames, emails, roles) in the format of Excel file (.xlsx)
 
 * `GET /api/report/users?type=PDF`
-  <br> Description: returns report of the users (usernames and emails)  in the format of PDF file (.pdf)
+  <br> Description: returns report of the users (usernames, emails, roles) in the format of PDF file (.pdf)
+
+## User API
+
+[User API](src\main\java\ca\unb\usermanagement\service\user\UserService.java)
+
+* `DELETE /api/user/delete`
+  <br> Description: deletes the selected user if it exists
+
+* `GET /api/user/`
+  <br> Description: returns list of all users (usernames, emails, roles)
+
+# Where to start
+The [Help](../HELP.md) file is the best place to begin. It contains the localhost webpages necessary for reviewing our project.
