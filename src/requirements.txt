@@ -1,4 +1,9 @@
 Software Requirements 
-
+Java 1.8
 
 Dependencies
+Spring Framework Boot
+Spring Dependency Management
+JSONWebToken
+Apache POI
+itextpdf
