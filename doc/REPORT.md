@@ -10,7 +10,7 @@ A user management system to manage and store a list of users in a system. We hav
 | Kayla Manahan  | 33 |
 
 ## Acknowledgements
-Please view our citations [here](..\data\README.md).
+Please view our citations [here](https://github.com/amansingh7010/user-management/blob/master/data/README.md).
 
 ## Service Architecture
 Our User Management system implements a number of nano services who's APIs are described below in the [API Specification](#api-specification) section.
